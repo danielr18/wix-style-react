@@ -79,7 +79,7 @@ export default class TextLinkLayout extends WixComponent {
         style={style}
         onMouseLeave={this.toggleHover}
         onMouseEnter={this.toggleHover}
-      >
+        >
         {children}
       </div>
     );
