@@ -36,8 +36,13 @@ describe('TextLink', () => {
   });
 
   it('should be with dark background', () => {
-    const driver = createDriver(<TextLink link="" darkBackground size="small"/>);
+    const driver = createDriver(<TextLink link="" theme="darkBackground" size="small"/>);
     expect(driver.isDarkBackground()).toBeTruthy();
+  });
+
+  it('should be with greyscale theme', () => {
+    const driver = createDriver(<TextLink link="" theme="greyScale" size="small"/>);
+    expect(driver.isGreyScale()).toBeTruthy();
   });
 
   it('should be with light background', () => {

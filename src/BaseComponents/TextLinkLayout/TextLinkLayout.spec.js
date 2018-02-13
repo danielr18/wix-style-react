@@ -35,8 +35,13 @@ describe('TextLinkLayout', () => {
   });
 
   it('should be with dark background', () => {
-    const driver = createDriver(<TextLinkLayout darkBackground size="small"/>);
+    const driver = createDriver(<TextLinkLayout theme="darkBackground" size="small"/>);
     expect(driver.isDarkBackground()).toBeTruthy();
+  });
+
+  it('should be with greyscale theme', () => {
+    const driver = createDriver(<TextLinkLayout theme="greyScale" size="small"/>);
+    expect(driver.isGreyScale()).toBeTruthy();
   });
 
   it('should be with light background', () => {

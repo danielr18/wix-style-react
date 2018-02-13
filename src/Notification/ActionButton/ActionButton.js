@@ -11,7 +11,7 @@ const ActionButton = ({children, onClick, type, link}) => {
 
   if (type === 'textLink') {
     return (
-      <TextLink underlineStyle="always" darkBackground link={link} {...commonProps} >
+      <TextLink underlineStyle="always" theme="darkBackground" link={link} {...commonProps} >
         {children}
       </TextLink>
     );
