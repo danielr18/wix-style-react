@@ -365,7 +365,7 @@ Input.propTypes = {
   textOverflow: PropTypes.string,
 
   /** The theme of the input */
-  theme: PropTypes.oneOf(['normal', 'paneltitle', 'material', 'amaterial', 'flat', 'flatdark']),
+  theme: PropTypes.oneOf(['normal', 'tags', 'paneltitle', 'material', 'amaterial', 'flat', 'flatdark']),
 
   /** The material design style floating label for input (supported only for amaterial theme for now) */
   title: PropTypes.string,

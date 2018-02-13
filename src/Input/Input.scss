@@ -115,6 +115,14 @@ $material-gap: 8px;
     @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
     @include ThemeDisable($color: white, $borderColor: $GR40, $backgroundColor: rgba(22,45,61,0.6));
   }
+  &-tags {
+    @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: transparent);
+    @include ThemeHover($backgroundColor: $B50);
+    @include ThemeFocus($borderColor: $B20, $boxShadow: inset 0px 0px 5px 0px fade($B10, 60%));
+    @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
+    @include ThemeDisable($color: $D55, $borderColor: $D60, $backgroundColor: $D80);
+    @include ThemeDisableHover($borderColor: $GR20);
+  }
   &-amaterial {
 
     .errorIcon {

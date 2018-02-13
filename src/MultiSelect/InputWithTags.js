@@ -14,7 +14,7 @@ class InputWithTags extends React.Component {
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
 
-    this.state = {inputValue: '', inputHasFocus: false};
+    this.state = {inputValue: '', inputHasFocus: false, hasHover: false};
   }
 
   componentDidMount() {
@@ -30,15 +30,25 @@ class InputWithTags extends React.Component {
     this.setState({inputHasFocus: false});
   }
 
+  handleHover() {
+    const {tags} = this.props;
+    if (!this.state.hasHover && tags.length === 0) {
+      this.setState({hasHover: true});
+    } else {
+      this.setState({hasHover: false});
+    }
+  }
+
   render() {
     const {tags, onRemoveTag, placeholder, error, disabled, delimiters, ...inputProps} = this.props;
-    const hasFocus = this.state.inputHasFocus;
+    const {inputHasFocus: hasFocus, hasHover} = this.state;
 
     const className = classNames({
       [styles.tagsContainer]: true,
       [styles.disabled]: disabled,
       [styles.error]: error,
       [styles.hasFocus]: hasFocus,
+      [styles.hasHover]: hasHover,
       [styles.hasMaxHeight]: !isUndefined(this.props.maxHeight) || !isUndefined(this.props.maxNumRows)
     });
 
@@ -58,6 +68,8 @@ class InputWithTags extends React.Component {
         className={className}
         style={{maxHeight}}
         onClick={() => this.handleInputFocus()}
+        onMouseOver={() => this.handleHover()}
+        onMouseOut={() => this.handleHover()}
         data-hook={this.props.dataHook}
         >
         {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}

@@ -287,4 +287,24 @@ describe('multiSelect', () => {
       expect(multiSelectTestkit.driver.getTagDriverByTagId('Alabama').exists()).toBeTruthy();
     });
   });
+  describe('hover on tags theme', () => {
+    it('should add hover class when hover and no element selected', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<MultiSelect dataHook={dataHook} tags={[]}/>);
+      const multiSelectTestkit = enzymeMultiSelectTestkitFactory({wrapper, dataHook});
+      multiSelectTestkit.inputDriver.mouseOver();
+      expect(multiSelectTestkit.inputDriver.isHoveredStyle()).toBeTruthy();
+      multiSelectTestkit.inputDriver.mouseOut();
+      expect(multiSelectTestkit.inputDriver.isHoveredStyle()).toBeFalsy();
+    });
+
+    it('should not add hover style when there is one tag or more', () => {
+      const dataHook = 'myDataHook';
+      const tags = [{id: 'Alabama', label: 'Alabama'}];
+      const wrapper = mount(<MultiSelect dataHook={dataHook} tags={tags}/>);
+      const multiSelectTestkit = enzymeMultiSelectTestkitFactory({wrapper, dataHook});
+      multiSelectTestkit.inputDriver.mouseOver();
+      expect(multiSelectTestkit.inputDriver.isHoveredStyle()).toBeFalsy();
+    });
+  });
 });

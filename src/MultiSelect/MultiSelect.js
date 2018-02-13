@@ -186,6 +186,7 @@ MultiSelect.propTypes = {
 
 MultiSelect.defaultProps = {
   ...InputWithOptions.defaultProps,
+  theme: 'tags',
   predicate: () => true,
   tags: [],
   delimiters: [',']

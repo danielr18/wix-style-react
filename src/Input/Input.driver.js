@@ -22,6 +22,8 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     click: () => ReactTestUtils.Simulate.click(input),
     clickSuffix: () => ReactTestUtils.Simulate.click(suffixNode),
     clickClear: () => ReactTestUtils.Simulate.click(clearButton),
+    mouseOver: () => ReactTestUtils.Simulate.mouseOver(input),
+    mouseOut: () => ReactTestUtils.Simulate.mouseOut(input),
     clearText: () => driver.enterText(''),
     enterText: text => ReactTestUtils.Simulate.change(input, {target: {value: text}}),
     getValue: () => input.value,
