@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import typography from '../../Typography';
 import WixComponent from '../../BaseComponents/WixComponent';
 
-const ThemeOptions = {
+export const ThemeOptions = {
   NORMAL: {type: 'normal', color: {hover: '#4eb7f5', normal: '#3899ec'}},
   DARK_BACKGROUND: {type: 'darkBackground', color: {hover: '#f0f4f7', normal: '#f0f4f7'}},
   GREYSCALE: {type: 'greyScale', color: {hover: '#162d3d', normal: '#162d3d'}}
