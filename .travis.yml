@@ -6,6 +6,7 @@ script:
  - npm run build
  -  'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then npx surge-github-autorelease -r $TRAVIS_REPO_SLUG -s $STORYBOOK_DIST -b $TRAVIS_BUILD_DIR -p $TRAVIS_PULL_REQUEST -t $GITHUB_API_TOKEN ; fi'
 
+
 notifications:
   email:
     recipients:
