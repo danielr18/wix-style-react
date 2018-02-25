@@ -15,16 +15,19 @@ $grid-row-margin-bottom: 30px;
 .container,
 .raw-container,
 .wixContainer {
-	padding: 0;
-	width: 100%;
+  padding: 0;
+  width: 100%;
 
-	* {
-		box-sizing: border-box;
-	}
+  * {
+    box-sizing: border-box;
+  }
 
-	.row {
-		margin-bottom: $grid-row-margin-bottom;
-	}
+  .row {
+    margin-bottom: $grid-row-margin-bottom;
+  }
+  .row:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .raw-container,
