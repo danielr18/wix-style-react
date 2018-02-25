@@ -25,10 +25,6 @@ $grid-row-margin-bottom: 30px;
 	.row {
 		margin-bottom: $grid-row-margin-bottom;
 	}
-
-  .row:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .raw-container,
