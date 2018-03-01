@@ -2,13 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import inputDriverFactory from '../../Input/Input.driver';
 import buttonDriverFactory from '../../Backoffice/Button/Button.driver';
-import $ from 'jquery';
 
 const editableRowDriverFactory = ({element, wrapper, component}) => {
-  const el = $(element);
-  const inputDriver = inputDriverFactory({element: el.find('[data-hook="edit-row-input"]')[0], wrapper: element});
-  const approveBtnDriver = buttonDriverFactory({element: el.find('[data-hook="edit-row-approve-button"]')[0], wrapper: element});
-  const cancelBtnDriver = buttonDriverFactory({element: el.find('[data-hook="edit-row-cancel-button"]')[0], wrapper: element});
+  const inputDriver = inputDriverFactory({element: element.querySelector('[data-hook="edit-row-input"]'), wrapper: element});
+  const approveBtnDriver = buttonDriverFactory({element: element.querySelector('[data-hook="edit-row-approve-button"]'), wrapper: element});
+  const cancelBtnDriver = buttonDriverFactory({element: element.querySelector('[data-hook="edit-row-cancel-button"]'), wrapper: element});
 
   return {
     exists: () => !!element,

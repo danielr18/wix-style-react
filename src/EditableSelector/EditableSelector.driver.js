@@ -3,37 +3,37 @@ import ReactDOM from 'react-dom';
 import selectorDriverFactory from '../Selector/Selector.driver';
 import editableRowDriverFactory from './EditableRow/EditableRow.driver';
 import ReactTestUtils from 'react-dom/test-utils';
-import $ from 'jquery';
 
 const editableSelectorDriverFactory = ({element, wrapper, component}) => {
-  const el = $(element);
-  const newRowButton = () => el.find('[data-hook="new-row-button-text"]');
-  const selectorRowDriver = index => selectorDriverFactory({element: el.find('[data-hook="editable-selector-item"]').eq(index), wrapper: element});
-  const editButtonAt = index => el.find('[data-hook="edit-item"]').eq(index);
-  const deleteButtonAt = index => el.find('[data-hook="delete-item"]').eq(index);
-  const editableRowDriver = () => editableRowDriverFactory({element: el.find('[data-hook="edit-row-wrapper"]')[0], wrapper: element});
+  const newRowButton = () => element.querySelector('[data-hook="new-row-button-text"]');
+  const selectorRowDriver = index => selectorDriverFactory({element: element.querySelectorAll('[data-hook="editable-selector-item"]')[index], wrapper: element});
+  const editButtonAt = index => element.querySelectorAll('[data-hook="edit-item"]')[index];
+  const deleteButtonAt = index => element.querySelectorAll('[data-hook="delete-item"]').item(index);
+  const editableRowDriver = () => editableRowDriverFactory({element: element.querySelector('[data-hook="edit-row-wrapper"]'), wrapper: element});
 
   return {
-    items: () => el.find('[data-hook="editable-selector-item"]').get().map(selector => selectorDriverFactory({element: selector})),
+    items: () => {
+      return [...element.querySelectorAll('[data-hook="editable-selector-item"]')].map(selector => selectorDriverFactory({element: selector}));
+    },
     exists: () => !!element,
-    isEditing: () => !!el.find('[data-hook="edit-row-wrapper"]').length,
+    isEditing: () => !!element.querySelectorAll('[data-hook="edit-row-wrapper"]').length,
     newRowButton,
     deleteButtonAt,
     editButtonAt,
     addNewRow: label => {
-      ReactTestUtils.Simulate.click(newRowButton()[0]);
+      ReactTestUtils.Simulate.click(newRowButton());
       editableRowDriver().setText(label);
     },
     editRow: (index, label) => {
-      ReactTestUtils.Simulate.click(editButtonAt(index)[0]);
+      ReactTestUtils.Simulate.click(editButtonAt(index));
       editableRowDriver().setText(label);
     },
     deleteRow: index => {
-      ReactTestUtils.Simulate.click(deleteButtonAt(index)[0]);
+      ReactTestUtils.Simulate.click(deleteButtonAt(index));
     },
     clickApprove: () => editableRowDriver().clickApprove(),
     clickCancel: () => editableRowDriver().clickCancel(),
-    title: () => el.find('[data-hook="editable-selector-title"] > span').text(),
+    title: () => element.querySelector('[data-hook="editable-selector-title"] > span').textContent,
     toggleItem: index => selectorRowDriver(index).toggle(),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

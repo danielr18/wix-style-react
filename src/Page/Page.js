@@ -7,7 +7,7 @@ import Tail from './Tail';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const SCROLL_TOP_THRESHOLD = 24;
+const SCROLL_TOP_THRESHOLD = 20;
 const SHORT_SCROLL_TOP_THRESHOLD = 3;
 
 /**
@@ -130,7 +130,7 @@ class Page extends WixComponent {
     const {backgroundImageUrl, gradientClassName, children, gradientCoverTail} = this.props;
     const {headerHeight, tailHeight, minimized} = this.state;
     const hasBackgroundImage = !!backgroundImageUrl;
-    const hasGradientClassName = !!gradientClassName;
+    const hasGradientClassName = !!gradientClassName && !backgroundImageUrl;
     const {
       PageHeader,
       PageContent,
@@ -149,7 +149,6 @@ class Page extends WixComponent {
           style={this._pageHeaderContainerStyle()}
           className={classNames(s.pageHeaderContainer, {
             [s.minimized]: minimized,
-            [s.withBackgroundColor]: minimized || (!hasBackgroundImage && !hasGradientClassName),
             [s.withoutBottomPadding]: PageTail && minimized
           })}
           ref={r => this.pageHeaderRef = r}

@@ -1,7 +1,7 @@
 @import '../../src/common';
 
 $page-side-padding: 48px;
-$scroll-top-threshold: 24px;
+$scroll-top-threshold: 20px;
 $page-background-color: rgba($D70, .95);
 $image-container-offset: 30px;
 
@@ -27,9 +27,6 @@ $image-container-offset: 30px;
   &.minimized {
     padding-top: 18px;
     padding-bottom: 18px;
-  }
-
-  &.with-background-color {
     background-color: $page-background-color;
   }
 

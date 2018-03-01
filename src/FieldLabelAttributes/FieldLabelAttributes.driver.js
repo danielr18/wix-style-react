@@ -1,12 +1,11 @@
-import $ from 'jquery';
 import tooltipDriverFactory from '../../src/Tooltip/Tooltip.driver';
 
 const fieldLabelAttributesDriverFactory = ({element, wrapper}) => {
   return {
     exists: () => !!element,
-    getTooltipTestKit: () => tooltipDriverFactory({wrapper, element: $(element).find('[data-hook="info"]')}),
-    hasRequired: () => !!$(element).find('[data-hook="required"]').length,
-    hasInfo: () => !!$(element).find('[data-hook="info"]').length
+    getTooltipTestKit: () => tooltipDriverFactory({wrapper, element: element.querySelector('[data-hook="info"]')}),
+    hasRequired: () => !!element.querySelectorAll('[data-hook="required"]').length,
+    hasInfo: () => !!element.querySelectorAll('[data-hook="info"]').length
   };
 };
 

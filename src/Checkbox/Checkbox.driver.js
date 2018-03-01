@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-import $ from 'jquery';
 import {isClassExists} from '../../test/utils';
 import labelDriverFactory from '../Label/Label.driver';
 import {testkitFactoryCreator} from '../test-common';
@@ -9,8 +8,7 @@ import {testkitFactoryCreator} from '../test-common';
 const labelTestkitFactory = testkitFactoryCreator(labelDriverFactory);
 
 const checkboxDriverFactory = ({element, wrapper, component}) => {
-
-  const checkbox = $(element).find('input')[0];
+  const checkbox = element.querySelector('input');
   const labelDriver = () => labelTestkitFactory({wrapper: element, dataHook: 'checkbox-label'});
 
   return {
@@ -18,7 +16,7 @@ const checkboxDriverFactory = ({element, wrapper, component}) => {
     click: () => ReactTestUtils.Simulate.change(checkbox),
     isChecked: () => isClassExists(element, 'checked'),
     isDisabled: () => isClassExists(element, 'disabled'),
-    isIndeterminate: () => $(element).find('.indeterminate').length === 1,
+    isIndeterminate: () => element.querySelectorAll('.indeterminate').length === 1,
     hasError: () => isClassExists(element, 'hasError'),
     getLabel: () => labelDriver().getLabelText(),
     getLabelDriver: () => labelDriver(),
