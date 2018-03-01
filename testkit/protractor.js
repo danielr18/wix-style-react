@@ -9,9 +9,6 @@ export const inputTestkitFactory = protractorTestkitFactoryCreator(inputDriverFa
 import labelDriverFactory from '../src/Label/Label.protractor.driver';
 export const labelTestkitFactory = protractorTestkitFactoryCreator(labelDriverFactory);
 
-import badgeDriverFactory from '../src/Badge/Badge.protractor.driver';
-export const badgeTestkitFactory = protractorTestkitFactoryCreator(badgeDriverFactory);
-
 import buttonDriverFactory from '../src/Backoffice/Button/Button.protractor.driver';
 export const buttonTestkitFactory = protractorTestkitFactoryCreator(buttonDriverFactory);
 
@@ -119,3 +116,7 @@ export const sliderTestkitFactory = protractorTestkitFactoryCreator(sliderDriver
 
 import tabsDriverFactory from '../src/Tabs/Tabs.protractor.driver';
 export const tabsTestkitFactory = protractorTestkitFactoryCreator(tabsDriverFactory);
+
+// wix-ui-backoffice proxy
+
+export {badgeTestkitFactory} from 'wix-ui-backoffice/dist/src/testkit/protractor';

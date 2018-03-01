@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+
+  > :not(:last-child) {
+    margin-right: 150px;  
+  }
+
+  > div > * {
+    margin-bottom: 30px;
+  }
+}
