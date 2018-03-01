@@ -32,6 +32,16 @@ $FontBold: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW
 	font-family: $FontBold;
 }
 
+@mixin FocusBox() {
+	border-color: $B10;
+	box-shadow: 0 0 0 3px $F00;
+}
+
+@mixin FocusBoxError() {
+	border-color: $R10;
+	box-shadow: 0 0 0 3px $R30;
+}
+
 /* New swatches! */
 
 $D10: #162d3d;   // Main input text, titles
@@ -55,6 +65,8 @@ $B40: #daeffe;   // Dividers, table selected
 $B50: #eaf7ff;   // Dividers
 $B60: #f4fafe;   // Table hover
 
+$F00:  #aadbfc;  // Focus Outline
+
 $GR10: #c8c8c8;  // Disabled buttons
 $GR20: #dadada;  // Disabled fields
 $GR30: #f1f1f1;  // Disabled background
@@ -77,7 +89,7 @@ $R00: #d6453d;
 $R05: #d8504c;   // CTA
 $R10: #ee5951;   // Errors, CTA hover
 $R20: #ff6666;   // Notifications
-$R30: #ffd7d7;   // Notifications
+$R30: #ffd7d7;   // Notifications, Focus Errors
 $R40: #ffe1e1;
 $R50: #ffebeb;   // Section Helper
 

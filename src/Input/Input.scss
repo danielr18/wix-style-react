@@ -103,7 +103,7 @@ $material-gap: 8px;
   &-normal {
     @include ThemeDefault($color: $D10, $borderColor: $B30, $backgroundColor: $D80);
     @include ThemeHover($backgroundColor: $B50);
-    @include ThemeFocus($borderColor: $B20, $boxShadow: inset 0px 0px 5px 0px fade($B10, 60%));
+    @include ThemeFocus;
     @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
     @include ThemeDisable($color: $D55, $borderColor: $D60, $backgroundColor: $D80);
     @include ThemeDisableHover($borderColor: $GR20);
@@ -111,7 +111,7 @@ $material-gap: 8px;
   &-paneltitle {
     @include ThemeDefault($color: white, $borderColor: #c1e4fe, $backgroundColor: rgba(22,45,61,0.6));
     @include ThemeHover($backgroundColor: rgba(22,45,61,0.4));
-    @include ThemeFocus($borderColor: #4eb7f5, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
+    @include ThemeFocusPanelTile($borderColor: #4eb7f5, $boxShadow: inset 0 0 5px 0 rgba(56,153,236,0.6));
     @include ThemeError($borderColor: $paletteR1, $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%));
     @include ThemeDisable($color: white, $borderColor: $GR40, $backgroundColor: rgba(22,45,61,0.6));
   }
