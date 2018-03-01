@@ -1,0 +1,44 @@
+@import '../../common';
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 23px;
+  background: $B10;
+  border-radius: 8px 8px 0 0;
+}
+
+.caption {
+  padding: 0 6px;
+  color: $D80;
+  font-weight: 300;
+  @include FontLight();
+  font-size: 16px;
+  line-height: 1.13;
+}
+
+.arrow {
+  display: inline-block;
+  z-index: 1;
+}
+
+.arrow-left {
+  margin-right: auto;
+}
+
+.arrow-right {
+  margin-left: auto;
+}
+
+:global([dir="rtl"]) {
+  .arrow-left {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .arrow-right {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}

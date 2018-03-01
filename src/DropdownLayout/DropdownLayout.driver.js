@@ -6,7 +6,6 @@ import values from 'lodash/values';
 import {isClassExists} from '../../test/utils';
 
 const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
-
   const contentContainer = element.childNodes[0];
   const options = element.querySelector('[data-hook=dropdown-layout-options]');
   const optionAt = position => (options.childNodes[position]);

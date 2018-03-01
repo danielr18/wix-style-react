@@ -39,6 +39,9 @@ datePickerPolyfills(window, global);
 | getNthWeekDayName | number | string | returns the n'th day name in the week |
 | open | - | - | open the calendar |
 | close | - | - | close the calendar |
+| mouseClickOutside | - | - | hides the calendar without saving the value |
+| pressLeftArrow | - | - | focuses previous day in calendar |
+| pressRightArrow | - | - | focuses next day in calendar |
 
 ### Usage Example
 

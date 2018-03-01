@@ -1,0 +1,58 @@
+@import "../common.scss";
+
+$size: 8px;
+
+@mixin rect($size) {
+  &::after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    content: ' ';
+    border: $size solid transparent;
+    @content;
+  }
+}
+
+
+.root {
+  position: relative;
+
+  &[x-placement^="top"] {
+    margin-bottom: $size;
+    @include rect($size) {
+      bottom: $size * 2 * -1;
+      left: 50px;
+      border-top-color: $D80;
+    };
+  }
+
+  &[x-placement^="right"] {
+    margin-left: $size;
+
+    @include rect($size) {
+      top: 50px;
+      left: $size * 2 * -1;
+      border-right-color: $B10;
+    };
+  }
+
+  &[x-placement^="bottom"] {
+    margin-top: $size;
+    @include rect($size) {
+      top: $size * 2 * -1;
+      left: 50px;
+      border-bottom-color: $B10;
+    };
+  }
+
+  &[x-placement^="left"] {
+    margin-right: $size;
+
+    @include rect($size) {
+      top: 50px;
+      right: $size * 2 * -1;
+      border-left-color: $B10;
+    };
+  }
+}

@@ -10,26 +10,26 @@ $FontBold: "HelveticaNeueW01-75Bold", "HelveticaNeueW02-75Bold", "HelveticaNeueW
 
 
 @mixin FontUltraThin() {
-	font-family: $FontUltraThin;
+  font-family: $FontUltraThin;
 }
 
 @mixin FontThin() {
-	font-family: $FontThin;
+  font-family: $FontThin;
 }
 @mixin FontLight() {
-	font-family: $FontLight;
+  font-family: $FontLight;
 }
 
 @mixin FontRoman() {
-	font-family: $FontRoman;
+  font-family: $FontRoman;
 }
 
 @mixin FontMedium() {
-	font-family: $FontMedium;
+  font-family: $FontMedium;
 }
 
 @mixin FontBold() {
-	font-family: $FontBold;
+  font-family: $FontBold;
 }
 
 /* New swatches! */
@@ -97,6 +97,11 @@ $Y40: #fef4cd;
 $Y50: #fff9e1;   // Section Helper
 
 $WR00: #e05050;  // Wix Restaurant red
+
+
+
+
+// TODO: The lower part is to be deprecated. DEPRECATED!
 
 $paletteB1  : #3899EC;
 $paletteB2  : #4EB7F5;

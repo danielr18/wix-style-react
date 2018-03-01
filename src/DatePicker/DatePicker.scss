@@ -1,244 +1,102 @@
 @import '../common.scss';
 
-$cellMargin: 6px;
-$calendarMargin: 15px;
+$rootPadding: 18px;
+$rootBackgroundColor: $D80;
+$dayHoverColor: $B50;
 
-@mixin hover-circle($color) {
-  position: relative;
+@mixin todayBackground($width) {
+  box-shadow:
+    0 0 0 $width $rootBackgroundColor inset,
+    0 0 0 100px $D70 inset;
+}
 
-  &:hover {
-    &:after {
-      content: ' ';
-      position: absolute;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-      border-radius: 50%;
-      margin: -6px;
-      border: solid 1px $color;
-    }
-  }
+.root {
+  z-index: 1;
 }
 
 :global {
-  @import 'react-datepicker/dist/react-datepicker';
-
-  .react-datepicker {
+  .DayPicker {
+    min-width: 333px;
     box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.2);
-    border: 0;
+    @include FontLight;
+    font-size: 14px;
+    line-height: 1.29;
+    color: $D40;
+    background-color: $D80;
+    border-radius: 8px;
 
-    &__header {
-      background-color: $B10;
-      border-bottom: 0;
-      padding: 0;
-
-      &__dropdown {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 20px 0;
-        box-sizing: border-box;
-      }
+    abbr {
+      text-decoration: none;
     }
 
-    &__input-container {
-      width: 100%;
+    &-Weekdays {
+      background-color: $D80;
+      padding: 0 $rootPadding;
     }
 
-    &__triangle {
-      border-bottom-color: $B10 !important;
-
-      &:before {
-        border-top-color: #efefef !important;
-      }
+    &-WeekdaysRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
     }
 
-    &__day-names {
-      background-color: #fff;
-      padding-top: 20px;
+    &-Body {
+      padding: 0 $rootPadding 18px;
     }
 
-    &__day {
-      @include FontLight();
+    &-Weekday {
+      width: 17px;
+      padding: 18px 0 12px;
+      color: $D40;
+    }
 
-      margin: $cellMargin;
-      box-sizing: border-box;
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      background-color: #FFF;
+    &-Week {
+      display: flex;
+      justify-content: space-around;
+    }
 
-      &:hover {
-        @include hover-circle($B10);
+    &-Day {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
 
-        background-color: transparent;
-        box-shadow: none;
-        $padding: 4px;
-        border-radius: 50%;
-        color: #000;
+      &:hover:not(&--today):not(&--selected) {
+        background-color: $B50;
       }
 
-      &--today {
-        @include hover-circle($B10);
-
-        border-radius: 50%;
-        background-color: $D70;
-        font-weight: 300;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-
-        &:hover {
-          background-color: $D70;
-        }
+      &--today:not(&--selected) {
+       background-color: $D70;
+       color: $D40;
+       @include todayBackground(6px);
       }
 
-      &--selected,
-      &--keyboard-selected {
-        $padding: 4px;
-        border-radius: 50%;
+      &--today.DayPicker-Day--keyboard-selected:not(&--selected) {
+        @include todayBackground(3px);
       }
 
       &--selected {
-        background-color: $B10 !important;
-        color: #FFF !important;
-        box-shadow: 0 0 0 6px $B10 !important;
-      }
-
-      &--keyboard-selected {
-        @include hover-circle($B10);
-        background-color: $B00;
-        box-shadow: 0 0 0 5px $B00;
-      }
-
-      &--outside-month {
-        pointer-events: none;
-        color: $D60;
-      }
-    }
-
-    &__day-name {
-      color: $D50;
-      font-weight: normal;
-      @include FontLight();
-      margin: $cellMargin;
-    }
-
-    &__current-month {
-      color: #fff;
-      font-weight: normal;
-      @include FontLight();
-      padding: 20px;
-      font-size: 16px;
-      line-height: 1.3;
-
-      &--hasYearDropdown,
-      &--hasMonthDropdown {
-        display:none;
-      }
-    }
-
-    &__week {
-      display: flex;
-    }
-
-    &__month {
-      margin: $calendarMargin;
-      margin-top: 0;
-    }
-  }
-
-  .react-datepicker__navigation {
-    &--previous,
-    &--next {
-      width: 36px;
-      height: 36px;
-      top: 11px;
-      background-position-x: 15px;
-      background-position-y: 11px;
-      background-repeat: no-repeat;
-      border: 0;
-      border-radius: 50%;
-
-      &:hover,
-      &:hover {
-        background-color: $B00;
-      }
-    }
-
-    &--previous {
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOHB4IiBoZWlnaHQ9IjE0cHgiIHZpZXdCb3g9IjAgMCA4IDE0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPiA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA0MS4yICgzNTM5NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+IDx0aXRsZT43OTFBRUVDMi0zRThGLTQ2NkQtODQ2Ri02OEFCQUZGQThBMjc8L3RpdGxlPiA8ZGVzYz5DcmVhdGVkIHdpdGggc2tldGNodG9vbC48L2Rlc2M+IDxkZWZzPjwvZGVmcz4gPGcgaWQ9IlN0eWxlZ3VpZGVzIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4gPGcgaWQ9IkNhbGVuZGFyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOTIuMDAwMDAwLCAtMjU3LjAwMDAwMCkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2U9IiNGRkZGRkYiPiA8ZyBpZD0iRGF0ZS1QaWNrZXItLy1TaW5nbGUtQ29tcGxleC0xIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3Mi4wMDAwMDAsIDIyMi4wMDAwMDApIj4gPHBvbHlsaW5lIGlkPSJhcnJvdy1sZWZ0IiBwb2ludHM9IjI3IDM2IDIxIDQyIDI3IDQ4Ij48L3BvbHlsaW5lPiA8L2c+IDwvZz4gPC9nPiA8L3N2Zz4=');
-      background-position-x: 13px;
-    }
-
-    &--next {
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOHB4IiBoZWlnaHQ9IjE0cHgiIHZpZXdCb3g9IjAgMCA4IDE0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPiA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA0MS4yICgzNTM5NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+IDx0aXRsZT43ODQxOUY4RC0zMUY2LTQxMjktOTc1RC05MDdCNjQ0QjRBMEI8L3RpdGxlPiA8ZGVzYz5DcmVhdGVkIHdpdGggc2tldGNodG9vbC48L2Rlc2M+IDxkZWZzPjwvZGVmcz4gPGcgaWQ9IlN0eWxlZ3VpZGVzIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4gPGcgaWQ9IkNhbGVuZGFyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzcxLjAwMDAwMCwgLTI1Ny4wMDAwMDApIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSIjRkZGRkZGIj4gPGcgaWQ9IkRhdGUtUGlja2VyLS8tU2luZ2xlLUNvbXBsZXgtMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzIuMDAwMDAwLCAyMjIuMDAwMDAwKSI+IDxwb2x5bGluZSBpZD0iYXJyb3ctcmlnaHQiIHBvaW50cz0iMzAwIDM2IDMwNiA0MiAzMDAgNDgiPjwvcG9seWxpbmU+IDwvZz4gPC9nPiA8L2c+IDwvc3ZnPg==');
-    }
-  }
-
-  .react-datepicker__year,
-  .react-datepicker__month {
-    &-read-view {
-      visibility: visible !important;
-    }
-
-    &-dropdown-container {
-      @include FontLight();
-      font-size: 16px;
-      line-height: 18px;
-      color: $D80;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      margin: 0 6px;
-    }
-
-    &-dropdown {
-      color: $B10;
-      border-radius: 8px;
-      background-color: #fff;
-      width: auto;
-      left: auto;
-      top: 100%;
-      box-shadow: 0 6px 6px 0 rgba(22, 45, 61, 0.06), 0 0 18px 0 rgba(22, 45, 61, 0.12);
-      border: none;
-
-      &--scrollable {
-        height: 180px;
-        overflow-y: scroll;
-      }
-    }
-
-    &-option,
-    &-option {
-      color: $D10;
-      padding: 6px 24px;
-      width: auto;
-
-      &:hover {
         background-color: $B10;
         color: $D80;
       }
 
-      &--selected {
-        left: 3px;
+      &--keyboard-selected:not(&--selected) {
+        border: 3px solid #aadbfc;
+      }
+
+      &--outside {
+        pointer-events: none;
+        color: $D60;
       }
     }
-
-    &-read-view--down-arrow {
-      width: 10px;
-      height: 10px;
-      margin-left: 6px;
-      border: none;
-      background: no-repeat url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgMTAgNiI+ICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEwIC43MDdMOS4yNzIgMCA0Ljk5OSA0LjE0Ni43MyAwIDAgLjcwNyA1IDUuNTZsNS00Ljg1MyIvPjwvc3ZnPg==');
-    }
   }
+}
 
-  .react-datepicker--hide-header__dropdown .react-datepicker__header__dropdown.react-datepicker__header__dropdown--scroll {
-    display:none;
-  }
+.icon {
+  margin: 0 6px;
+  color: $B10;
+  display: flex;
 }

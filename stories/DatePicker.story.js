@@ -1,6 +1,6 @@
-import moment from 'moment';
-
 import DatePicker from 'wix-style-react/DatePicker';
+
+import format from 'date-fns/format';
 
 export default {
   category: '3. Inputs',
@@ -8,14 +8,14 @@ export default {
   component: DatePicker,
   componentPath: '../src/DatePicker',
 
-  componentProps: setProps => ({
-    onChange: value => setProps({value}),
+  componentProps: setState => ({
+    onChange: value => setState({value}),
     dateFormat: 'YYYY/MM/DD',
     dataHook: 'storybook-datepicker',
-    value: moment('2017/01/01')
+    value: new Date('2017/05/01')
   }),
 
   exampleProps: {
-    onChange: ev => moment(ev).format('YYYY/MM/DD')
+    onChange: date => format(date, 'YYYY/MM/DD')
   }
 };
